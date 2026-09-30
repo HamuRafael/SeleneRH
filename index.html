@@ -177,7 +177,7 @@
 
     <div class="cta">
       <p>Esse é só o começo. No <strong>Líder Adaptável</strong> você aprofunda os 6 estilos, aprende a escolher o certo para cada momento da equipe e estrutura feedbacks e PDIs que realmente funcionam.</p>
-      <a class="btn" id="cta-link" href="#" target="_blank" rel="noopener">Conhecer o Líder Adaptável por R$29</a>
+      <button class="btn" id="cta-btn" type="button">Conhecer o Líder Adaptável por R$29</button>
     </div>
     <div class="restart"><button class="text-btn" onclick="restartQuiz()">Refazer o teste</button></div>
   </div>
@@ -186,7 +186,10 @@
 <script>
   // ---- Link do produto na Hotmart ----
   const CHECKOUT_URL = "https://go.hotmart.com/D107764510U?dp=1";
-  document.getElementById('cta-link').href = CHECKOUT_URL;
+  // O link é aberto no clique (e não fica no href) para bloqueadores de anúncio não esconderem o botão
+  document.getElementById('cta-btn').addEventListener('click', () => {
+    window.open(CHECKOUT_URL, '_blank', 'noopener');
+  });
 
   const questions = [
     { text: "Um novo colaborador comete um erro pela primeira vez. Você:", opts: {

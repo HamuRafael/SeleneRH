@@ -8,166 +8,174 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Qual é o seu estilo de liderança?">
 <meta property="og:description" content="Oito cenários reais de gestão de equipe. Em três minutos você descobre seu estilo predominante e onde ele mais funciona.">
-<meta name="theme-color" content="#0B1730">
+<meta name="theme-color" content="#1D2433">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #14213D;
-    --navy-deep: #0B1730;
-    --navy-panel: #17284C;
-    --gold: #C99A2E;
-    --gold-light: #E4C874;
-    --paper: #F7F7F9;
-    --text-dark: #1B1F2B;
-    --text-muted: #5B6472;
+    --ink: #1D2433;
+    --ink-soft: #4A5263;
+    --page: #F4F5F7;
+    --fill: #E6E9EE;
+    --fill-hover: #D8DDE5;
     --white: #FFFFFF;
-  }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #F7F7F9; } }
-  :root[data-theme="dark"] { --paper: #F7F7F9; }
-
-  * { box-sizing: border-box; }
-  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-  body {
-    margin: 0;
-    font-family: 'Inter', -apple-system, sans-serif;
-    background: var(--navy-deep);
-    color: var(--text-dark);
+    --s-a: #B3261E;
+    --s-b: #2F4BB5;
+    --s-c: #B83A6E;
+    --s-d: #1F7A5A;
+    --s-e: #A84F00;
+    --s-f: #6A3FA0;
+    --accent: var(--ink);
+    --font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    min-height: 100%;
   }
-  h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); background: var(--page); }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    font-variation-settings: "wdth" 100;
+    background: var(--page);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2 { margin: 0; font-weight: 800; font-stretch: 118%; font-variation-settings: "wdth" 118; letter-spacing: -0.015em; }
+  p { margin: 0; }
+
   .screen { display: none; min-height: 100vh; min-height: 100dvh; }
-  .screen.active { display: flex; flex-direction: column; }
-  .wrap { max-width: 620px; margin: 0 auto; width: 100%; padding: 2rem 1.5rem 3rem; }
+  .screen.active { display: block; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 3rem 1.5rem 3.5rem; }
 
-  /* ---- Dots motif ---- */
-  .dots { display: grid; grid-template-columns: repeat(5, 6px); gap: 10px; width: fit-content; }
-  .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: .8; }
-
-  /* ---- INTRO ---- */
-  #intro { background: var(--navy-deep); color: var(--white); justify-content: center; }
-  #intro .wrap { text-align: left; }
-  .eyebrow-dots { margin-bottom: 2rem; }
-  #intro h1 { font-size: clamp(2rem, 7vw, 2.9rem); font-weight: 600; line-height: 1.15; color: var(--gold-light); }
-  #intro p.lead { font-size: 1.05rem; line-height: 1.55; color: #C7CEDE; margin-top: 1.1rem; max-width: 42ch; }
-  .compass { width: 96px; height: 96px; margin: 2rem 0 1.8rem; }
   .btn {
-    appearance: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
-    font-size: 1rem; font-weight: 600; padding: 0.95rem 1.7rem; border-radius: 999px;
-    background: var(--gold); color: var(--navy-deep); transition: transform .15s ease, background .15s ease;
+    display: inline-block; appearance: none; border: 0; cursor: pointer;
+    font-family: var(--font); font-size: 1rem; font-weight: 700; text-decoration: none;
+    padding: 1rem 1.6rem; border-radius: 4px;
+    background: var(--ink); color: var(--white);
   }
-  .btn:hover { background: var(--gold-light); }
-  .btn:active { transform: scale(0.97); }
-  .btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
-  .btn-secondary { background: transparent; border: 1px solid #3A4A72; color: var(--white); }
-  .btn-secondary:hover { background: #1E2E52; }
-  .hint { margin-top: 1.6rem; font-size: 0.85rem; color: #8B96B3; }
+  .btn:hover { background: #2E3850; }
+  .btn:focus-visible, .opt:focus-visible, .text-btn:focus-visible { outline: 3px solid var(--s-b); outline-offset: 3px; }
+  .text-btn { background: none; border: 0; padding: 0.3rem 0; cursor: pointer; font-family: var(--font); font-size: 0.95rem; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ---- QUIZ ---- */
-  #quiz { background: var(--paper); }
-  .progress-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.8rem; }
-  .progress-track { flex: 1; height: 4px; background: #E2E4EA; border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--navy); border-radius: 2px; transition: width .3s ease; }
-  .progress-label { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
-  #question-text { font-size: 1.5rem; font-weight: 500; line-height: 1.35; color: var(--text-dark); margin-bottom: 1.6rem; }
-  .options { display: flex; flex-direction: column; gap: 0.7rem; }
+  /* ---------- Intro ---------- */
+  #intro .wrap { padding-top: clamp(3rem, 12vh, 7rem); }
+  #intro h1 { font-size: clamp(2.4rem, 10vw, 4rem); line-height: 0.98; max-width: 11ch; }
+  .lead { margin-top: 1.4rem; font-size: 1.1rem; line-height: 1.55; color: var(--ink-soft); max-width: 44ch; }
+  .styles-grid { list-style: none; margin: 2.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .styles-grid li {
+    height: 64px; padding: 0.55rem 0.7rem; display: flex; align-items: flex-end;
+    color: var(--white); font-size: 0.85rem; font-weight: 600; line-height: 1.15;
+  }
+  .styles-grid li:first-child { border-radius: 4px 0 0 0; }
+  .styles-grid li:nth-child(3) { border-radius: 0 4px 0 0; }
+  .styles-grid li:nth-child(4) { border-radius: 0 0 0 4px; }
+  .styles-grid li:last-child { border-radius: 0 0 4px 0; }
+  .styles-caption { margin-top: 0.7rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .intro-actions { margin-top: 2.4rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; }
+  .intro-meta { font-size: 0.9rem; color: var(--ink-soft); }
+
+  /* ---------- Quiz ---------- */
+  .quiz-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
+  .progress { height: 6px; background: var(--fill); }
+  .progress-fill { height: 100%; background: var(--ink); transition: width .25s ease; }
+  #question-text { margin: 2.2rem 0 1.8rem; font-size: clamp(1.45rem, 5.4vw, 1.9rem); font-weight: 700; line-height: 1.2; }
+  .options { display: flex; flex-direction: column; gap: 6px; }
   .opt {
-    text-align: left; background: var(--white); border: 1px solid #E2E4EA; border-radius: 12px;
-    padding: 0.95rem 1.15rem; font-family: 'Inter', sans-serif; font-size: 0.98rem; color: var(--text-dark);
-    cursor: pointer; transition: border-color .15s ease, background .15s ease;
+    width: 100%; text-align: left; border: 0; border-radius: 4px; cursor: pointer;
+    background: var(--fill); color: var(--ink);
+    font-family: var(--font); font-size: 1rem; line-height: 1.4;
+    padding: 1.05rem 1.2rem;
+    transition: background .12s ease;
   }
-  .opt:hover { border-color: var(--gold); background: #FBF6EA; }
-  .opt:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
-  .opt.selected { border-color: var(--navy); background: var(--navy); color: var(--white); }
-  .quiz-footer { margin-top: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
-  .back-link { background: none; border: none; color: var(--text-muted); font-size: 0.9rem; cursor: pointer; padding: 0.4rem 0; }
+  .opt:hover { background: var(--fill-hover); }
+  .opt.selected { background: var(--ink); color: var(--white); }
 
-  /* ---- RESULT ---- */
-  #result { background: var(--navy-deep); color: var(--white); }
-  #result .wrap { padding-top: 3rem; }
-  .result-kicker { font-size: 0.95rem; color: #8FA0C7; margin-bottom: 0.6rem; }
-  #result-name { font-size: clamp(1.9rem, 7vw, 2.6rem); color: var(--gold-light); font-weight: 600; margin-bottom: 1.1rem; }
-  #result-tagline { font-size: 1.1rem; color: #DCE1EE; line-height: 1.5; margin-bottom: 1.8rem; }
-  .panel { background: var(--navy-panel); border: 1px solid #233769; border-radius: 14px; padding: 1.3rem 1.4rem; margin-bottom: 0.9rem; }
-  .panel .label { font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-bottom: 0.4rem; }
-  .panel .body { font-size: 0.95rem; color: #E3E7F1; line-height: 1.5; }
-  .cta-block { margin-top: 2.2rem; padding-top: 1.9rem; border-top: 1px solid #263B6B; }
-  .cta-block p { color: #C7CEDE; font-size: 0.98rem; line-height: 1.55; margin: 0 0 1.2rem; max-width: 46ch; }
-  a.btn { display: inline-block; text-decoration: none; }
-  .restart { margin-top: 1.2rem; }
-  .restart button { background: none; border: none; color: #8B96B3; font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
+  /* ---------- Result ---------- */
+  #result { background: var(--accent); color: var(--white); }
+  #result .wrap { padding-top: clamp(3rem, 10vh, 6rem); }
+  .result-kicker { font-size: 1rem; opacity: 0.85; }
+  #result-name { margin-top: 0.4rem; font-size: clamp(2.3rem, 9.5vw, 3.6rem); line-height: 1; }
+  #result-tagline { margin-top: 1.1rem; font-size: 1.2rem; line-height: 1.45; max-width: 36ch; }
+  .facts { margin: 2.6rem 0 0; }
+  .facts > div { padding: 1.1rem 0; border-top: 1px solid rgba(255,255,255,.3); display: grid; gap: 0.35rem; }
+  .facts dt { font-weight: 700; font-size: 1rem; }
+  .facts dd { margin: 0; font-size: 1rem; line-height: 1.55; opacity: 0.92; max-width: 52ch; }
+  @media (min-width: 600px) {
+    .facts > div { grid-template-columns: 11rem 1fr; gap: 1.2rem; }
+  }
+  .cta { margin-top: 2.6rem; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,.3); }
+  .cta p { font-size: 1.05rem; line-height: 1.55; max-width: 48ch; }
+  .cta .btn { margin-top: 1.3rem; background: #121418; color: var(--white); }
+  .cta .btn:hover { background: #262a33; }
+  .restart { margin-top: 1.4rem; }
+  .restart .text-btn { color: var(--white); opacity: 0.85; }
 
-  @media (max-width: 420px) {
-    .wrap { padding: 1.5rem 1.2rem 2.5rem; }
-    #question-text { font-size: 1.3rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    #result.active .reveal { animation: rise .45s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   }
 </style>
 </head>
 <body>
 
-<!-- INTRO -->
 <section id="intro" class="screen active">
   <div class="wrap">
-    <div class="eyebrow-dots dots">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <svg class="compass" viewBox="0 0 100 100" fill="none">
-      <circle cx="50" cy="50" r="46" stroke="#C99A2E" stroke-width="1.5" opacity="0.5"/>
-      <circle cx="50" cy="50" r="30" stroke="#C99A2E" stroke-width="1.5" opacity="0.35"/>
-      <path d="M50 20 L58 46 L50 80 L42 46 Z" fill="#C99A2E"/>
-      <circle cx="50" cy="50" r="4" fill="#0B1730"/>
-    </svg>
     <h1>Qual é o seu estilo de liderança?</h1>
-    <p class="lead">Oito cenários reais de gestão de equipe. Responda como você realmente agiria — em três minutos você descobre seu estilo predominante e onde ele mais funciona.</p>
-    <div style="margin-top:2rem;">
+    <p class="lead">Oito situações reais de gestão de equipe. Responda como você realmente agiria e descubra seu estilo predominante e onde ele funciona melhor.</p>
+    <ul class="styles-grid" aria-label="Os seis estilos avaliados">
+      <li style="background:var(--s-a)">Autoritária</li>
+      <li style="background:var(--s-b)">Visionária</li>
+      <li style="background:var(--s-c)">Afiliativa</li>
+      <li style="background:var(--s-d)">Democrática</li>
+      <li style="background:var(--s-e)">Marcadora de ritmo</li>
+      <li style="background:var(--s-f)">Treinadora</li>
+    </ul>
+    <p class="styles-caption">Seis estilos possíveis. Um deles é o seu.</p>
+    <div class="intro-actions">
       <button class="btn" onclick="startQuiz()">Começar o teste</button>
+      <span class="intro-meta">Cerca de 3 minutos, sem cadastro.</span>
     </div>
-    <p class="hint">Sem cadastro. Resultado imediato.</p>
   </div>
 </section>
 
-<!-- QUIZ -->
 <section id="quiz" class="screen">
   <div class="wrap">
-    <div class="progress-row">
-      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:12.5%"></div></div>
-      <div class="progress-label" id="progress-label">1 / 8</div>
+    <div class="quiz-top">
+      <span id="progress-label">Pergunta 1 de 8</span>
+      <button class="text-btn" id="back-btn" onclick="goBack()">Voltar</button>
     </div>
+    <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill" style="width:12.5%"></div></div>
     <h2 id="question-text"></h2>
     <div class="options" id="options"></div>
-    <div class="quiz-footer">
-      <button class="back-link" id="back-btn" onclick="goBack()">Voltar</button>
-    </div>
   </div>
 </section>
 
-<!-- RESULT -->
 <section id="result" class="screen">
   <div class="wrap">
-    <div class="result-kicker">Seu estilo predominante</div>
-    <h2 id="result-name"></h2>
-    <p id="result-tagline"></p>
+    <p class="result-kicker reveal">Seu estilo predominante é</p>
+    <h2 id="result-name" class="reveal"></h2>
+    <p id="result-tagline" class="reveal"></p>
 
-    <div class="panel"><div class="label">COMO IDENTIFICAR</div><div class="body" id="r-ident"></div></div>
-    <div class="panel"><div class="label">VANTAGENS</div><div class="body" id="r-vant"></div></div>
-    <div class="panel"><div class="label">CENÁRIO IDEAL</div><div class="body" id="r-cen"></div></div>
-    <div class="panel"><div class="label">PONTO DE ATENÇÃO</div><div class="body" id="r-aten"></div></div>
+    <dl class="facts">
+      <div><dt>Como identificar</dt><dd id="r-ident"></dd></div>
+      <div><dt>Vantagens</dt><dd id="r-vant"></dd></div>
+      <div><dt>Cenário ideal</dt><dd id="r-cen"></dd></div>
+      <div><dt>Ponto de atenção</dt><dd id="r-aten"></dd></div>
+    </dl>
 
-    <div class="cta-block">
+    <div class="cta">
       <p>Esse é só o começo. No <strong>Líder Adaptável</strong> você aprofunda os 6 estilos, aprende a escolher o certo para cada momento da equipe e estrutura feedbacks e PDIs que realmente funcionam.</p>
-      <a class="btn" id="cta-link" href="#" target="_blank" rel="noopener">Conhecer o Líder Adaptável — R$29</a>
-      <div class="restart"><button onclick="restartQuiz()">Refazer o teste</button></div>
+      <a class="btn" id="cta-link" href="#" target="_blank" rel="noopener">Conhecer o Líder Adaptável por R$29</a>
     </div>
+    <div class="restart"><button class="text-btn" onclick="restartQuiz()">Refazer o teste</button></div>
   </div>
 </section>
 
 <script>
-  // ---- Substitua pelo link real do seu produto no Hotmart ----
+  // ---- Link do produto na Hotmart ----
   const CHECKOUT_URL = "https://go.hotmart.com/D107764510U?dp=1";
   document.getElementById('cta-link').href = CHECKOUT_URL;
 
@@ -263,6 +271,7 @@
       aten: "Exige tempo e paciência; pouco eficaz em situações de urgência." }
   };
 
+  const styleColor = { a: '--s-a', b: '--s-b', c: '--s-c', d: '--s-d', e: '--s-e', f: '--s-f' };
   let current = 0;
   const answers = [];
 
@@ -275,7 +284,7 @@
     const q = questions[current];
     document.getElementById('question-text').textContent = q.text;
     document.getElementById('progress-fill').style.width = ((current + 1) / questions.length * 100) + '%';
-    document.getElementById('progress-label').textContent = (current + 1) + ' / ' + questions.length;
+    document.getElementById('progress-label').textContent = 'Pergunta ' + (current + 1) + ' de ' + questions.length;
     document.getElementById('back-btn').style.visibility = current === 0 ? 'hidden' : 'visible';
 
     const optsEl = document.getElementById('options');
@@ -312,6 +321,9 @@
       if ((tally[l] || 0) > max) { max = tally[l] || 0; winner = l; }
     });
     const r = results[winner];
+    const color = getComputedStyle(document.documentElement).getPropertyValue(styleColor[winner]).trim();
+    document.getElementById('result').style.setProperty('--accent', color);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
     document.getElementById('result-name').textContent = r.name;
     document.getElementById('result-tagline').textContent = r.tagline;
     document.getElementById('r-ident').textContent = r.ident;
@@ -324,6 +336,7 @@
   function restartQuiz() {
     current = 0;
     answers.length = 0;
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1D2433');
     switchScreen('intro');
   }
 

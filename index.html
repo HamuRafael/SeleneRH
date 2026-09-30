@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qual é o seu estilo de liderança?</title>
+<meta name="description" content="Oito cenários reais de gestão de equipe. Em três minutos você descobre seu estilo de liderança predominante.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qual é o seu estilo de liderança?">
+<meta property="og:description" content="Oito cenários reais de gestão de equipe. Em três minutos você descobre seu estilo predominante e onde ele mais funciona.">
+<meta name="theme-color" content="#0B1730">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #14213D;
+    --navy-deep: #0B1730;
+    --navy-panel: #17284C;
+    --gold: #C99A2E;
+    --gold-light: #E4C874;
+    --paper: #F7F7F9;
+    --text-dark: #1B1F2B;
+    --text-muted: #5B6472;
+    --white: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #F7F7F9; } }
+  :root[data-theme="dark"] { --paper: #F7F7F9; }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--navy-deep);
+    color: var(--text-dark);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    min-height: 100%;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; }
+  .screen { display: none; min-height: 100vh; min-height: 100dvh; }
+  .screen.active { display: flex; flex-direction: column; }
+  .wrap { max-width: 620px; margin: 0 auto; width: 100%; padding: 2rem 1.5rem 3rem; }
+
+  /* ---- Dots motif ---- */
+  .dots { display: grid; grid-template-columns: repeat(5, 6px); gap: 10px; width: fit-content; }
+  .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); opacity: .8; }
+
+  /* ---- INTRO ---- */
+  #intro { background: var(--navy-deep); color: var(--white); justify-content: center; }
+  #intro .wrap { text-align: left; }
+  .eyebrow-dots { margin-bottom: 2rem; }
+  #intro h1 { font-size: clamp(2rem, 7vw, 2.9rem); font-weight: 600; line-height: 1.15; color: var(--gold-light); }
+  #intro p.lead { font-size: 1.05rem; line-height: 1.55; color: #C7CEDE; margin-top: 1.1rem; max-width: 42ch; }
+  .compass { width: 96px; height: 96px; margin: 2rem 0 1.8rem; }
+  .btn {
+    appearance: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+    font-size: 1rem; font-weight: 600; padding: 0.95rem 1.7rem; border-radius: 999px;
+    background: var(--gold); color: var(--navy-deep); transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { background: var(--gold-light); }
+  .btn:active { transform: scale(0.97); }
+  .btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+  .btn-secondary { background: transparent; border: 1px solid #3A4A72; color: var(--white); }
+  .btn-secondary:hover { background: #1E2E52; }
+  .hint { margin-top: 1.6rem; font-size: 0.85rem; color: #8B96B3; }
+
+  /* ---- QUIZ ---- */
+  #quiz { background: var(--paper); }
+  .progress-row { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.8rem; }
+  .progress-track { flex: 1; height: 4px; background: #E2E4EA; border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--navy); border-radius: 2px; transition: width .3s ease; }
+  .progress-label { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+  #question-text { font-size: 1.5rem; font-weight: 500; line-height: 1.35; color: var(--text-dark); margin-bottom: 1.6rem; }
+  .options { display: flex; flex-direction: column; gap: 0.7rem; }
+  .opt {
+    text-align: left; background: var(--white); border: 1px solid #E2E4EA; border-radius: 12px;
+    padding: 0.95rem 1.15rem; font-family: 'Inter', sans-serif; font-size: 0.98rem; color: var(--text-dark);
+    cursor: pointer; transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--gold); background: #FBF6EA; }
+  .opt:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+  .opt.selected { border-color: var(--navy); background: var(--navy); color: var(--white); }
+  .quiz-footer { margin-top: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
+  .back-link { background: none; border: none; color: var(--text-muted); font-size: 0.9rem; cursor: pointer; padding: 0.4rem 0; }
+
+  /* ---- RESULT ---- */
+  #result { background: var(--navy-deep); color: var(--white); }
+  #result .wrap { padding-top: 3rem; }
+  .result-kicker { font-size: 0.95rem; color: #8FA0C7; margin-bottom: 0.6rem; }
+  #result-name { font-size: clamp(1.9rem, 7vw, 2.6rem); color: var(--gold-light); font-weight: 600; margin-bottom: 1.1rem; }
+  #result-tagline { font-size: 1.1rem; color: #DCE1EE; line-height: 1.5; margin-bottom: 1.8rem; }
+  .panel { background: var(--navy-panel); border: 1px solid #233769; border-radius: 14px; padding: 1.3rem 1.4rem; margin-bottom: 0.9rem; }
+  .panel .label { font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-bottom: 0.4rem; }
+  .panel .body { font-size: 0.95rem; color: #E3E7F1; line-height: 1.5; }
+  .cta-block { margin-top: 2.2rem; padding-top: 1.9rem; border-top: 1px solid #263B6B; }
+  .cta-block p { color: #C7CEDE; font-size: 0.98rem; line-height: 1.55; margin: 0 0 1.2rem; max-width: 46ch; }
+  a.btn { display: inline-block; text-decoration: none; }
+  .restart { margin-top: 1.2rem; }
+  .restart button { background: none; border: none; color: #8B96B3; font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
+
+  @media (max-width: 420px) {
+    .wrap { padding: 1.5rem 1.2rem 2.5rem; }
+    #question-text { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<section id="intro" class="screen active">
+  <div class="wrap">
+    <div class="eyebrow-dots dots">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <svg class="compass" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="46" stroke="#C99A2E" stroke-width="1.5" opacity="0.5"/>
+      <circle cx="50" cy="50" r="30" stroke="#C99A2E" stroke-width="1.5" opacity="0.35"/>
+      <path d="M50 20 L58 46 L50 80 L42 46 Z" fill="#C99A2E"/>
+      <circle cx="50" cy="50" r="4" fill="#0B1730"/>
+    </svg>
+    <h1>Qual é o seu estilo de liderança?</h1>
+    <p class="lead">Oito cenários reais de gestão de equipe. Responda como você realmente agiria — em três minutos você descobre seu estilo predominante e onde ele mais funciona.</p>
+    <div style="margin-top:2rem;">
+      <button class="btn" onclick="startQuiz()">Começar o teste</button>
+    </div>
+    <p class="hint">Sem cadastro. Resultado imediato.</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="screen">
+  <div class="wrap">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:12.5%"></div></div>
+      <div class="progress-label" id="progress-label">1 / 8</div>
+    </div>
+    <h2 id="question-text"></h2>
+    <div class="options" id="options"></div>
+    <div class="quiz-footer">
+      <button class="back-link" id="back-btn" onclick="goBack()">Voltar</button>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="screen">
+  <div class="wrap">
+    <div class="result-kicker">Seu estilo predominante</div>
+    <h2 id="result-name"></h2>
+    <p id="result-tagline"></p>
+
+    <div class="panel"><div class="label">COMO IDENTIFICAR</div><div class="body" id="r-ident"></div></div>
+    <div class="panel"><div class="label">VANTAGENS</div><div class="body" id="r-vant"></div></div>
+    <div class="panel"><div class="label">CENÁRIO IDEAL</div><div class="body" id="r-cen"></div></div>
+    <div class="panel"><div class="label">PONTO DE ATENÇÃO</div><div class="body" id="r-aten"></div></div>
+
+    <div class="cta-block">
+      <p>Esse é só o começo. No <strong>Líder Adaptável</strong> você aprofunda os 6 estilos, aprende a escolher o certo para cada momento da equipe e estrutura feedbacks e PDIs que realmente funcionam.</p>
+      <a class="btn" id="cta-link" href="#" target="_blank" rel="noopener">Conhecer o Líder Adaptável — R$29</a>
+      <div class="restart"><button onclick="restartQuiz()">Refazer o teste</button></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ---- Substitua pelo link real do seu produto no Hotmart ----
+  const CHECKOUT_URL = "https://go.hotmart.com/D107764510U?dp=1";
+  document.getElementById('cta-link').href = CHECKOUT_URL;
+
+  const questions = [
+    { text: "Um novo colaborador comete um erro pela primeira vez. Você:", opts: {
+      a: "Corrijo na hora e defino exatamente como deve ser feito",
+      b: "Explico a visão maior do porquê aquilo importa e oriento o caminho",
+      c: "Pergunto como ele se sente e ofereço apoio",
+      d: "Reúno o time para decidirmos juntos como evitar o erro",
+      e: "Mostro como eu mesmo faria, esperando que acompanhe o ritmo",
+      f: "Pergunto o que ele aprendeu e ajudo a desenhar os próximos passos" }},
+    { text: "A equipe está em crise, com prazo apertado. Você:", opts: {
+      a: "Assumo o controle e distribuo tarefas objetivas",
+      b: "Reforço o objetivo final e confio na equipe para os detalhes",
+      c: "Cuido do clima antes de cobrar entregas",
+      d: "Convoco reunião para alinharmos prioridades coletivamente",
+      e: "Faço eu mesmo boa parte do trabalho crítico",
+      f: "Aproveito para desenvolver a autonomia do time, mesmo sob pressão" }},
+    { text: "Dois colaboradores entram em conflito aberto numa reunião. Você:", opts: {
+      a: "Interrompo e determino a solução na hora",
+      b: "Reconecto os dois ao objetivo comum da equipe",
+      c: "Medeio com foco em preservar a relação entre eles",
+      d: "Abro espaço para os dois lados se explicarem e o grupo opinar",
+      e: "Sigo o ritmo da reunião e resolvo depois, individualmente",
+      f: "Faço perguntas para que cada um chegue à própria conclusão" }},
+    { text: "Um colaborador entrega um resultado muito acima do esperado. Você:", opts: {
+      a: "Registro e sigo — reconhecimento não é prioridade",
+      b: "Conecto a conquista à visão maior do time",
+      c: "Comemoro junto, valorizando o vínculo",
+      d: "Compartilho a conquista com todo o grupo",
+      e: "Uso o resultado como novo padrão a ser seguido",
+      f: "Pergunto o que ele fez diferente, para replicar o aprendizado" }},
+    { text: "É hora de planejar as metas do próximo trimestre. Você:", opts: {
+      a: "Defino eu mesmo as metas e comunico ao time",
+      b: "Apresento a visão e deixo o time desenhar o caminho",
+      c: "Construo as metas ouvindo as preocupações de cada um",
+      d: "Faço um workshop coletivo para definirmos juntos",
+      e: "Estabeleço metas ambiciosas, no meu padrão de excelência",
+      f: "Ajudo cada pessoa a definir metas de desenvolvimento próprias" }},
+    { text: "A empresa anuncia uma mudança estrutural repentina. Você:", opts: {
+      a: "Comunico as novas regras e exijo adaptação imediata",
+      b: "Explico o porquê da mudança e onde ela nos leva",
+      c: "Dou espaço para o time expressar receios antes de avançar",
+      d: "Discuto com a equipe como vamos nos adaptar juntos",
+      e: "Sigo em frente no meu ritmo, esperando que acompanhem",
+      f: "Uso o momento para desenvolver a resiliência do time" }},
+    { text: "Um novo colaborador está em processo de integração. Você:", opts: {
+      a: "Entrego um passo a passo rígido a seguir",
+      b: "Apresento o propósito da área e onde ele se encaixa",
+      c: "Priorizo que ele se sinta acolhido pelo grupo",
+      d: "Envolvo o time para que todos ajudem na integração",
+      e: "Espero que aprenda observando meu próprio padrão de trabalho",
+      f: "Faço perguntas para entender suas forças e direcionar seu crescimento" }},
+    { text: "Um colaborador pede mais autonomia no trabalho. Você:", opts: {
+      a: "Mantenho o controle — ainda não é o momento",
+      b: "Concedo autonomia dentro da visão já definida",
+      c: "Aceito, priorizando a confiança na relação",
+      d: "Discuto com o time os limites dessa autonomia",
+      e: "Concedo, desde que mantenha meu padrão de qualidade",
+      f: "Aproveito para estruturar um plano de desenvolvimento" }}
+  ];
+
+  const results = {
+    a: { name: "Liderança Autoritária", tagline: "Você direciona com clareza e assume o controle quando a situação exige.",
+      ident: "Você dá ordens diretas, espera obediência imediata e decide sozinho, sem abrir espaço para discussão.",
+      vant: "Decisões rápidas, clareza total sobre o que fazer, eficaz em momentos de crise.",
+      cen: "Equipes com pouca experiência ou situações de crise que exigem disciplina e velocidade.",
+      aten: "Fora de contexto, gera desmotivação, alta rotatividade e dependência excessiva do líder." },
+    b: { name: "Liderança Visionária", tagline: "Você mobiliza a equipe pelo propósito, mostrando onde vocês querem chegar.",
+      ident: "Você comunica um propósito claro — \"para onde vamos\" — e dá liberdade sobre o \"como chegar lá\".",
+      vant: "Mobiliza e inspira, dá senso de propósito, funciona bem com equipes diversas.",
+      cen: "Momentos de mudança de direção, quando o time precisa de uma visão clara para se guiar.",
+      aten: "Perde força se o líder não tiver credibilidade ou domínio técnico reconhecido pela equipe." },
+    c: { name: "Liderança Afiliativa", tagline: "Você constrói confiança e harmonia, colocando as pessoas em primeiro lugar.",
+      ident: "Você prioriza o vínculo emocional, valoriza harmonia e pergunta \"como você está\" antes de cobrar resultado.",
+      vant: "Fortalece relações, aumenta confiança e coesão, ótima para reconstruir clima após conflitos.",
+      cen: "Equipes em reconstrução de confiança, alta rotatividade recente ou clima desgastado.",
+      aten: "Usada sozinha, pode gerar complacência e falta de direção clara sobre desempenho." },
+    d: { name: "Liderança Democrática", tagline: "Você constrói consenso e faz o time decidir junto com você.",
+      ident: "Você busca consenso, envolve a equipe nas decisões e valoriza a troca de ideias antes de decidir.",
+      vant: "Aumenta engajamento e senso de pertencimento, gera soluções mais criativas.",
+      cen: "Equipes maduras e experientes, ambientes de inovação e resolução colaborativa de problemas.",
+      aten: "Processo decisório mais lento; nem sempre o consenso é a decisão mais eficiente." },
+    e: { name: "Liderança Marcadora de Ritmo", tagline: "Você exige excelência e lidera pelo exemplo, no seu próprio ritmo.",
+      ident: "Você define um padrão de excelência alto e espera que a equipe o acompanhe — muitas vezes fazendo parte do trabalho você mesmo.",
+      vant: "Entrega rápida, alta performance em curto prazo, ótima com equipes já competentes.",
+      cen: "Projetos que exigem alta performance e entregas rápidas, com equipe tecnicamente pronta.",
+      aten: "Gera estresse e esgotamento se mantida por muito tempo; não desenvolve quem ainda está aprendendo." },
+    f: { name: "Liderança Treinadora", tagline: "Você desenvolve pessoas para o longo prazo, uma pergunta de cada vez.",
+      ident: "Você faz perguntas em vez de dar respostas, focando no desenvolvimento de longo prazo de cada pessoa.",
+      vant: "Desenvolve talentos, cria autonomia real, fortalece a equipe para desafios futuros.",
+      cen: "Colaboradores com potencial de crescimento e abertura para desenvolvimento, momentos de PDI.",
+      aten: "Exige tempo e paciência; pouco eficaz em situações de urgência." }
+  };
+
+  let current = 0;
+  const answers = [];
+
+  function startQuiz() {
+    switchScreen('quiz');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[current];
+    document.getElementById('question-text').textContent = q.text;
+    document.getElementById('progress-fill').style.width = ((current + 1) / questions.length * 100) + '%';
+    document.getElementById('progress-label').textContent = (current + 1) + ' / ' + questions.length;
+    document.getElementById('back-btn').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+    const optsEl = document.getElementById('options');
+    optsEl.innerHTML = '';
+    Object.entries(q.opts).forEach(([letter, text]) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.textContent = text;
+      if (answers[current] === letter) btn.classList.add('selected');
+      btn.onclick = () => selectAnswer(letter);
+      optsEl.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(letter) {
+    answers[current] = letter;
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function goBack() {
+    if (current > 0) { current--; renderQuestion(); }
+  }
+
+  function showResult() {
+    const tally = {};
+    answers.forEach(l => tally[l] = (tally[l] || 0) + 1);
+    let winner = 'a', max = -1;
+    ['a','b','c','d','e','f'].forEach(l => {
+      if ((tally[l] || 0) > max) { max = tally[l] || 0; winner = l; }
+    });
+    const r = results[winner];
+    document.getElementById('result-name').textContent = r.name;
+    document.getElementById('result-tagline').textContent = r.tagline;
+    document.getElementById('r-ident').textContent = r.ident;
+    document.getElementById('r-vant').textContent = r.vant;
+    document.getElementById('r-cen').textContent = r.cen;
+    document.getElementById('r-aten').textContent = r.aten;
+    switchScreen('result');
+  }
+
+  function restartQuiz() {
+    current = 0;
+    answers.length = 0;
+    switchScreen('intro');
+  }
+
+  function switchScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>

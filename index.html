@@ -180,6 +180,11 @@
   .offer-buy { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; }
   .price { font-size: 2.6rem; font-weight: 800; font-variation-settings: "wdth" 118; line-height: 1; }
   .price small { font-size: 1.1rem; margin-right: 0.15rem; }
+  .price .cents { font-size: 1.3rem; margin: 0 0 0 0.05rem; }
+  .price-box { display: grid; gap: 0.25rem; }
+  .price-old { font-size: 0.95rem; font-weight: 600; opacity: 0.75; }
+  .price-old s { text-decoration-thickness: 2px; text-decoration-color: #8E1D17; }
+  .offer-tag { display: inline-block; margin-left: 0.5rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: var(--navy-deep); color: var(--gold-light); font-size: 0.75rem; font-weight: 700; vertical-align: middle; }
   .offer .btn { background: var(--navy-deep); color: var(--white); padding: 1.05rem 1.6rem; box-shadow: 0 10px 24px rgba(11,23,48,.3); }
   .offer .btn:hover { background: var(--navy); }
   .offer .btn:focus-visible { outline-color: var(--navy-deep); }
@@ -297,7 +302,7 @@
     </div>
 
     <div class="offer">
-      <p class="offer-kicker">Próximo passo</p>
+      <p class="offer-kicker">Próximo passo <span class="offer-tag">Preço promocional</span></p>
       <h3>Líder Adaptável</h3>
       <p>Esse é só o começo. Agora que você conhece o seu estilo, aprenda a usar todos eles a seu favor.</p>
       <ul>
@@ -306,7 +311,10 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg><span>Estruture feedbacks e PDIs que realmente funcionam</span></li>
       </ul>
       <div class="offer-buy">
-        <span class="price"><small>R$</small>29</span>
+        <div class="price-box">
+          <span class="price-old">De <s>R$29</s> por</span>
+          <span class="price"><small>R$</small>19<small class="cents">,90</small></span>
+        </div>
         <button class="btn" id="cta-btn" type="button">Quero o Líder Adaptável</button>
       </div>
     </div>
@@ -331,7 +339,7 @@
 
 <script>
   // ---- Link do produto na Hotmart ----
-  const CHECKOUT_URL = "https://go.hotmart.com/D107764510U?dp=1";
+  const CHECKOUT_URL = "https://pay.hotmart.com/D107764510U?off=yv4r215a";
   // O link é aberto no clique (e não fica no href) para bloqueadores de anúncio não esconderem o botão
   document.getElementById('cta-btn').addEventListener('click', () => {
     window.open(CHECKOUT_URL, '_blank', 'noopener');
